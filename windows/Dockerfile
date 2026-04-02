@@ -1,10 +1,10 @@
 # Use Windows Server Core or Nano Server as base
 FROM mcr.microsoft.com/windows/servercore:ltsc2025
+WORKDIR /
 
 # Install PowerShell 7
 SHELL ["powershell", "-Command"]
-RUN Invoke-WebRequest -Uri https://github.com/PowerShell/PowerShell/releases/download/v7.4.0/PowerShell-7.4.0-win-x64.msi \
-    -OutFile ps7.msi; \
+RUN Invoke-WebRequest -Uri https://github.com/PowerShell/PowerShell/releases/download/v7.4.0/PowerShell-7.4.0-win-x64.msi -OutFile ps7.msi; \
     Start-Process msiexec.exe -ArgumentList '/i', 'ps7.msi', '/quiet' -Wait; \
     Remove-Item ps7.msi
 
@@ -22,7 +22,5 @@ RUN Expand-Archive -Path "C:/tempinst/flutter.zip" -DestinationPath "C:/"
 RUN Remove-Item "C:/tempinst/flutter.zip"
 ENV PATH="C:\flutter\bin;${PATH}"
 
+CMD ["pwsh"]
 
-
-# Verify installations
-RUN flutter --version
