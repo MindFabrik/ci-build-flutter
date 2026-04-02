@@ -1,0 +1,44 @@
+pipeline:
+  name: ci-build-flutter
+  identifier: cibuildflutter
+  projectIdentifier: cicontainerbuilds
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: CIBuildFlutter
+        build: <+input>
+  stages:
+    - stage:
+        name: Build Windows
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: false
+            paths: []
+          platform:
+            os: Windows
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: Build Container
+                  identifier: Build_Container
+                  spec:
+                    repo: ci-buid-flutter
+                    tags:
+                      - windows
+                    dockerfile: ./windows/Dockerfile
+                    context: ./windows
+                    registryRef: ci-build-flutter
+          buildIntelligence:
+            enabled: false
