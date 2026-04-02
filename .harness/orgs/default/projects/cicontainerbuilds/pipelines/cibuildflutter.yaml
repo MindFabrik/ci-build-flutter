@@ -11,7 +11,7 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: Build
+        name: Build Windows
         identifier: Build
         description: ""
         type: CI
@@ -20,6 +20,7 @@ pipeline:
           caching:
             enabled: true
             override: false
+            paths: []
           platform:
             os: Windows
             arch: Amd64
@@ -39,3 +40,5 @@ pipeline:
                     dockerfile: ./windows/Dockerfile
                     context: ./windows
                     registryRef: ci-build-flutter
+          buildIntelligence:
+            enabled: false
