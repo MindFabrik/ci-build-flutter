@@ -1,5 +1,5 @@
 # Use Windows Server Core or Nano Server as base
-FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64
+FROM mcr.microsoft.com/windows/servercore:ltsc2022-amd64
 WORKDIR /
 
 # Install PowerShell 7
