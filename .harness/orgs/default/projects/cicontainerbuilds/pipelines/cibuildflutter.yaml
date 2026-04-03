@@ -35,7 +35,7 @@ pipeline:
                   identifier: Build_Container
                   spec:
                     connectorRef: HAR_OliverO_Lab
-                    repo: ci-build-flutter
+                    repo: zzoaater5yj8vyfdeu4gg/ci-build-flutter
                     tags:
                       - windows-<+pipeline.sequenceId>
                     dockerfile: ./windows/Dockerfile
