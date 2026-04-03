@@ -34,9 +34,9 @@ pipeline:
                   name: Build Container
                   identifier: Build_Container
                   spec:
-                    repo: ci-buid-flutter
+                    repo: cibuildflutter
                     tags:
-                      - windows<+pipeline.sequenceId>
+                      - windows-<+pipeline.sequenceId>
                     dockerfile: ./windows/Dockerfile
                     context: ./windows
                     registryRef: ci-build-flutter
