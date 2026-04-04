@@ -13,21 +13,21 @@ RUN $machinePath = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine
       [System.Environment]::SetEnvironmentVariable('PATH', $machinePath + ';C:\Program Files\PowerShell\7', 'Machine'); \
     }
 
-# Install & Configure Flutter
+# Install Flutter
 RUN Invoke-WebRequest -Uri "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.41.6-stable.zip" -OutFile "C:/tempinst/flutter.zip"
 RUN Expand-Archive -Path "C:/tempinst/flutter.zip" -DestinationPath "C:/"
 RUN Remove-Item "C:/tempinst/flutter.zip"
 
-# Set PATH via Machine environment so it persists into container runtime
+# Configure Environment
 RUN [System.Environment]::SetEnvironmentVariable('PATH', \
       'C:\flutter\bin;' + [System.Environment]::GetEnvironmentVariable('PATH', 'Machine'), \
       'Machine')
-
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
-
-# Fix Git dubious ownership — mark C:/flutter safe for all users globally
 RUN git config --system core.longpaths true
 RUN git config --system --add safe.directory C:/flutter
 RUN git config --system --add safe.directory '*'
+
+# Configure Flutter
+RUN flutter --version
 
 CMD ["pwsh", "-NoLogo"]
