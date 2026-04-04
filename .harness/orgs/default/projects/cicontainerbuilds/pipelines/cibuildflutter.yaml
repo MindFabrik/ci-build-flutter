@@ -38,6 +38,7 @@ pipeline:
                     repo: laboeh/ci-buid-flutter
                     tags:
                       - windows-<+pipeline.sequenceId>
+                      - windows-lastest
                     dockerfile: ./windows/Dockerfile
                     context: ./windows
           buildIntelligence:
