@@ -25,4 +25,9 @@ RUN [System.Environment]::SetEnvironmentVariable('PATH', \
 
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
+# Fix Git dubious ownership — mark C:/flutter safe for all users globally
+RUN git config --system core.longpaths true
+RUN git config --system --add safe.directory C:/flutter
+RUN git config --system --add safe.directory '*'
+
 CMD ["pwsh", "-NoLogo"]
