@@ -1,5 +1,5 @@
 # Use Windows Server Core or Nano Server as base
-FROM mcr.microsoft.com/windows/servercore:ltsc2022-amd64
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022-amd64
 WORKDIR /
 
 # Install PowerShell 7
@@ -22,5 +22,5 @@ RUN Expand-Archive -Path "C:/tempinst/flutter.zip" -DestinationPath "C:/"
 RUN Remove-Item "C:/tempinst/flutter.zip"
 ENV PATH="C:\flutter\bin;${PATH}"
 
-CMD ["pwsh"]
+CMD ["pwsh", "-Command"]
 
