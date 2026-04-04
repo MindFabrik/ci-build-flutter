@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:windowsservercore:ltsc2022 
+FROM mcr.microsoft.com/powershell:7.4-windowsservercore-ltsc2022 
 SHELL ["pwsh", "-Command"]
 
 # Install GIT
