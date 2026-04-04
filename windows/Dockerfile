@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:nanoserver-ltsc2022
+FROM mcr.microsoft.com/powershell:windowsservercore:ltsc2022 
 SHELL ["pwsh", "-Command"]
 
 # Install GIT
@@ -15,11 +15,6 @@ ENV PATH="C:\flutter\bin;${PATH}"
 
 
 # Configure Container 
-ENV PATH="C:\Program Files\PowerShell;\
-C:\Windows\System32;\
-C:\Windows;\
-C:\Windows\System32\Wbem;\
-C:\flutter\bin"
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
 # Configure Shell
