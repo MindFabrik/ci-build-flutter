@@ -16,8 +16,8 @@ ENV PATH="C:\flutter\bin;${PATH}"
 
 # Configure Container 
 USER ContainerAdministrator
-RUN setx /M PATH "%PATH%;C:\Program Files\PowerShell"
-RUN setx /M PATH "%PATH%;C:\flutter\bin"
+RUN ["cmd", "/S", "/C", "setx /M PATH \"%PATH%;C:\\Program Files\\PowerShell\""]
+RUN ["cmd", "/S", "/C", "setx /M PATH \"%PATH%;C:\\flutter\\bin\""]
 USER ContainerUser
 
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
