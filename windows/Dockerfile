@@ -15,11 +15,10 @@ ENV PATH="C:\flutter\bin;${PATH}"
 
 
 # Configure Container 
-USER ContainerAdministrator
-RUN ["cmd", "/S", "/C", "setx /M PATH \"%PATH%;C:\\Program Files\\PowerShell\""]
-RUN ["cmd", "/S", "/C", "setx /M PATH \"%PATH%;C:\\flutter\\bin\""]
-USER ContainerUser
-
+ENV PATH="C:\flutter\bin;${PATH}"
+ENV PATH="C:\Program Files\PowerShell;${PATH}"
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
+
+# Configure Shell
 SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop';"]
 CMD ["pwsh"]
