@@ -13,10 +13,8 @@ RUN Expand-Archive -Path "C:/tempinst/flutter.zip" -DestinationPath "C:/"
 RUN Remove-Item "C:/tempinst/flutter.zip"
 ENV PATH="C:\flutter\bin;${PATH}"
 
-
-# Configure Container 
+# Configure Container
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
-# Configure Shell
-SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop';"]
-CMD ["pwsh"]
+# Set ErrorActionPreference at runtime instead, not via SHELL
+CMD ["pwsh", "-NoLogo", "-Command", "$ErrorActionPreference = 'Stop'; pwsh"]
