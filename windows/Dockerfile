@@ -15,8 +15,11 @@ ENV PATH="C:\flutter\bin;${PATH}"
 
 
 # Configure Container 
-ENV PATH="C:\flutter\bin;${PATH}"
-ENV PATH="C:\Program Files\PowerShell;${PATH}"
+ENV PATH="C:\Program Files\PowerShell;\
+C:\Windows\System32;\
+C:\Windows;\
+C:\Windows\System32\Wbem;\
+C:\flutter\bin"
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
 # Configure Shell
