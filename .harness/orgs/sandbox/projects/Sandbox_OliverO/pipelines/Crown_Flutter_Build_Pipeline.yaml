@@ -1,0 +1,45 @@
+pipeline:
+  name: Crown Flutter Build Pipeline
+  identifier: Crown_Flutter_Build_Pipeline
+  projectIdentifier: Sandbox_OliverO
+  orgIdentifier: sandbox
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: Crown_cibuildflutter_Repo
+        build: <+input>
+  stages:
+    - stage:
+        name: Build Container
+        identifier: Build_Container
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: false
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Windows
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: Build and Push Container
+                  identifier: Build_and_Push_Container
+                  spec:
+                    connectorRef: DockerHub_laboeh
+                    repo: laboeh/ci-buid-flutter
+                    tags:
+                      - windows-lastest
+                      - windows-seq<+pipeline.sequenceId>
+                    caching: true
+                    dockerfile: ./windows/Dockerfile
+                    context: ./windows/
