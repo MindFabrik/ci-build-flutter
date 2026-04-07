@@ -41,5 +41,4 @@ pipeline:
                       - windows-lastest
                       - windows-seq<+pipeline.sequenceId>
                     caching: true
-                    dockerfile: ./windows/Dockerfile
-                    context: ./windows/
+                    dockerfile: windows/Dockerfile
